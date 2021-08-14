@@ -48,4 +48,5 @@ preds = clf.predict(X_valid)
 
 print('MAE:', mean_absolute_error(y_valid, preds))
 
-
+# Preprocessing of test data, fit model
+preds_test = my_pipeline.predict(X_test_full)
