@@ -36,7 +36,7 @@ study = optuna.create_study()
 study.optimize(objective, n_trials=25)
 
 
-# params for catboost
+# params for Catboost
  param = {
             'max_depth': trial.suggest_int('max_depth', 6, 12),
             'learning_rate': trial.suggest_float('eta', 0.007, 0.013),
@@ -47,4 +47,20 @@ study.optimize(objective, n_trials=25)
             'bootstrap_type': 'Bernoulli', 
             'eval_metric':'RMSE',
             'verbose': False
+        }
+
+    
+    
+# params for LGBM 
+param = {
+            'boosting_type': 'goss',
+            'max_depth': trial.suggest_int('max_depth', 6, 12),
+            'learning_rate': trial.suggest_float('learning_rate', 0.007, 0.013),
+            'n_estimators': trial.suggest_int('n_estimators', 400, 4000, 400),
+            'min_child_weight': trial.suggest_int('min_child_weight', 5, 20),
+            'subsample': trial.suggest_discrete_uniform('subsample', 0.5, 0.9, 0.1),
+            'colsample_bytree': trial.suggest_discrete_uniform('colsample_bytree', 0.5, 0.9, 0.1),
+            'reg_alpha': trial.suggest_int('reg_alpha', 0, 50),
+            'reg_lambda': trial.suggest_int('reg_lambda', 1, 50),
+            'n_jobs': 4,
         }
