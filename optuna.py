@@ -34,3 +34,17 @@ def objective(trial):
 
 study = optuna.create_study()
 study.optimize(objective, n_trials=25)
+
+
+# params for catboost
+ param = {
+            'max_depth': trial.suggest_int('max_depth', 6, 12),
+            'learning_rate': trial.suggest_float('eta', 0.007, 0.013),
+            'n_estimators': trial.suggest_int('n_estimators', 400, 4000, 400),
+            'subsample': trial.suggest_discrete_uniform('subsample', 0.5, 0.9, 0.1),
+            'reg_lambda': trial.suggest_int('reg_lambda', 1, 50),
+            'task_type': 'GPU',
+            'bootstrap_type': 'Bernoulli', 
+            'eval_metric':'RMSE',
+            'verbose': False
+        }
