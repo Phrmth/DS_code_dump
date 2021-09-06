@@ -32,7 +32,7 @@ def objective(trial):
     
     return mean_squared_error(y_valid, y_hat, squared=False)
 
-study = optuna.create_study()
+study = optuna.create_study(direction = 'minimize') # 'maximize'
 study.optimize(objective, n_trials=25)
 
 
